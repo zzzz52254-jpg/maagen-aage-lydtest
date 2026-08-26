@@ -75,11 +75,12 @@ let festivalTracks=[new Audio('festmusik.mp3'),new Audio('grotte_ambience.mp3')]
 buttons.forEach(button=>{
 button.addEventListener('click',async()=>{
 const file=button.dataset.file;
-festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0});
+festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0})
+  player.pause();
 festivalTracks=[];
 buttons.forEach(b=>b.classList.remove('active'));
 button.classList.add('active');
-player.pause();
+
 player.currentTime=0;
 player.src=file;
 player.loop=true;
