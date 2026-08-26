@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mågen Åge – Lyd</title>
+<style>
+body{margin:0;background:#f4f7fb;color:#10243e;font-family:Arial,sans-serif}
+main{max-width:950px;margin:0 auto;padding:28px 18px}
+h1{font-size:38px;margin:0 0 8px} .intro{font-size:18px;margin-bottom:26px}
+section{background:white;border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 4px 18px #00000012}
+h2{font-size:28px;margin:0 0 14px}
+.track{width:100%;display:flex;align-items:center;text-align:left;gap:14px;border:2px solid #aab6c7;background:#edf2f8;border-radius:16px;padding:16px;margin:10px 0;cursor:pointer;font-size:18px}
+.track:hover,.track.active{background:#dfe9f5;border-color:#5d718d}
+.icon{font-size:25px} small{display:block;color:#53677f;margin-top:6px}
+#status{background:white;border-radius:14px;padding:14px;margin:18px 0;font-size:16px}
+audio{width:100%;margin-top:8px}
+</style>
+</head>
+<body>
+<main>
+<h1>🎧 Mågen Åge – Lyd</h1>
+<div class="intro">Tryk én gang. Lydsporet fortsætter i loop, indtil du vælger et andet.</div>
+<div id="status">Vælg et lydspor.</div>
+<audio id="player" controls preload="none"></audio>
+<section>
+<h2>Kapitel 1 – Det lysende krystalbrev</h2>
+      <button class="track" data-file="hav_og_maager.mp3" type="button">
+        <span class="icon">🌊</span>
+        <span><strong>Hav og måger</strong><small>▶ Klik for at afspille · loop</small></span>
+      </button><h2>Kapitel 2 – Stormen over Havet af Skyer</h2>
+      <button class="track" data-file="storm_over_havet_af_skyer.mp3" type="button">
+        <span class="icon">⛈️</span>
+        <span><strong>Storm over havet</strong><small>▶ Klik for at afspille · loop</small></span>
+      </button><h2>Kapitel 3 – De sovende drager</h2>
+      <button class="track" data-file="de_sovende_drager_scene.mp3" type="button">
+        <span class="icon">🐉</span>
+        <span><strong>De sovende drager</strong><small>▶ Klik for at afspille · loop</small></span>
+      </button><h2>Kapitel 4 – Skyggernes Labyrint</h2>
+      <button class="track" data-file="skyggernes_labyrint_scene.mp3" type="button">
+        <span class="icon">🌑</span>
+        <span><strong>Skyggernes labyrint</strong><small>▶ Klik for at afspille · loop</small></span>
+      </button><h2>Kapitel 5 – Den sidste flamme</h2>
+      <button class="track" data-file="ild.mp3" type="button">
+        <span class="icon">🔥</span>
+        <span><strong>Den sidste flamme</strong><small>▶ Klik for at afspille · loop</small></span>
+      </button><h2>Kapitel 6 – Dragefestivalen</h2>
+      <button class="track" data-file="festmusik.mp3" type="button">
+        <span class="icon">🎉</span>
+        <span><strong>Dragefestival – fest</strong><small>▶ Klik for at afspille · loop</small></span>
+      </button>
+      <button class="track" data-file="dragebroel_festival.mp3" type="button">
+        <span class="icon">🐲</span>
+        <span><strong>Dragebrøl</strong><small>▶ Klik for at afspille · loop</small></span>
+      </button>
+      <button class="track" data-file="grotte_ambience.mp3" type="button">
+        <span class="icon">🎵</span>
+        <span><strong>Festivalstemning</strong><small>▶ Klik for at afspille · loop</small></span>
+      </button>
+</section>
+</main>
+<script>
+const player=document.getElementById('player');
+const status=document.getElementById('status');
+const buttons=[...document.querySelectorAll('.track')];
+
+buttons.forEach(button=>{
+  button.addEventListener('click', async ()=>{
+    const file=button.dataset.file;
+    player.pause();
+    player.src=file;
+    player.loop=true;
+    buttons.forEach(b=>b.classList.remove('active'));
+    button.classList.add('active');
+    status.textContent='Indlæser: '+file;
+    try {
+      await player.play();
+      status.textContent='Afspiller: '+button.innerText.replace(/\s+/g,' ').trim()+' — loop er aktivt.';
+    } catch(e) {
+      status.textContent='Browseren kunne ikke starte lydfilen: '+file;
+      console.error(e);
+    }
+  });
+});
+player.addEventListener('error',()=>{
+  if(player.src) status.textContent='Kunne ikke indlæse lydfilen: '+player.src;
+});
+</script>
+</body>
+</html>

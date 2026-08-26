@@ -1,0 +1,30 @@
+MÅGEN ÅGE – LYDHJEMMESIDE V1.1
+
+Denne version indeholder de lydfiler, der er uploadet til projektet.
+
+Pixabay-lyd:
+- Hav og måger
+- Storm
+- Dragebrøl
+- Dragevinger
+- Grotte/mine ambience
+- Ild
+
+Pixabay Content License:
+https://pixabay.com/service/license-summary/
+
+Dragefestival:
+- harvestseason.mp3
+  Kilde: OpenGameArt – Medieval: Harvest Season
+  Licens: CC0
+  https://opengameart.org/content/medieval-harvest-season
+
+- 757589.mp3
+  Kilde: den uploadede drageeffekt
+  Licens: CC0 ifølge den angivne kildeside ved anskaffelsen.
+
+Bemærkning:
+V1.1 er bevidst enkel. Der er endnu ikke tilføjet latter eller jubel.
+
+
+V1.3: Kapitel 3 er teknisk samlet til én MP3-scene af de tre eksisterende lydfiler. Ingen af originalfilerne er ændret.
