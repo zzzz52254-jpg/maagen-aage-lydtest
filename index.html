@@ -2,88 +2,135 @@
 <html lang="da">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Mågen Åge – Lyd</title>
 <style>
 body{margin:0;background:#f4f7fb;color:#10243e;font-family:Arial,sans-serif}
 main{max-width:950px;margin:0 auto;padding:28px 18px}
-h1{font-size:38px;margin:0 0 8px} .intro{font-size:18px;margin-bottom:26px}
+h1{font-size:38px;margin:0 0 8px}.intro{font-size:18px;margin-bottom:26px}
 section{background:white;border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 4px 18px #00000012}
 h2{font-size:28px;margin:0 0 14px}
-.track{width:100%;display:flex;align-items:center;text-align:left;gap:14px;border:2px solid #aab6c7;background:#edf2f8;border-radius:16px;padding:16px;margin:10px 0;cursor:pointer;font-size:18px}
+.track{width:100%;display:flex;align-items:center;text-align:left;gap:14px;border:2px solid #aab6c7;background:#edf2f8;border-radius:12px;padding:14px;margin:10px 0;cursor:pointer;color:#10243e}
 .track:hover,.track.active{background:#dfe9f5;border-color:#5d718d}
-.icon{font-size:25px} small{display:block;color:#53677f;margin-top:6px}
+.icon{font-size:25px;min-width:32px}.track strong{font-size:17px}
+.track small{display:block;color:#53677f;margin-top:6px}
 #status{background:white;border-radius:14px;padding:14px;margin:18px 0;font-size:16px}
-audio{width:100%;margin-top:8px}
+.stop{background:#f1dede;border-color:#b96b6b}.stop:hover{background:#ead0d0}
 </style>
 </head>
 <body>
 <main>
-<h1>🎧 Mågen Åge – Lyd</h1>
-<div class="intro">Tryk én gang. Lydsporet fortsætter i loop, indtil du vælger et andet.</div>
-<div id="status">Vælg et lydspor.</div>
-<audio id="player" controls preload="none"></audio>
+<h1>🌊 Mågen Åge – Lyd</h1>
+<div class="intro">Vælg et kapitel og lyt til lydene fra eventyret.</div>
+<div id="status">Klar til afspilning.</div>
+
 <section>
-<h2>Kapitel 1 – Det lysende krystalbrev</h2>
-      <button class="track" data-file="hav_og_maager.mp3" type="button">
-        <span class="icon">🌊</span>
-        <span><strong>Hav og måger</strong><small>▶ Klik for at afspille · loop</small></span>
-      </button><h2>Kapitel 2 – Stormen over Havet af Skyer</h2>
-      <button class="track" data-file="storm_over_havet_af_skyer.mp3" type="button">
-        <span class="icon">⛈️</span>
-        <span><strong>Storm over havet</strong><small>▶ Klik for at afspille · loop</small></span>
-      </button><h2>Kapitel 3 – De sovende drager</h2>
-      <button class="track" data-file="de_sovende_drager_scene.mp3" type="button">
-        <span class="icon">🐉</span>
-        <span><strong>De sovende drager</strong><small>▶ Klik for at afspille · loop</small></span>
-      </button><h2>Kapitel 4 – Skyggernes Labyrint</h2>
-      <button class="track" data-file="skyggernes_labyrint_scene.mp3" type="button">
-        <span class="icon">🌑</span>
-        <span><strong>Skyggernes labyrint</strong><small>▶ Klik for at afspille · loop</small></span>
-      </button><h2>Kapitel 5 – Den sidste flamme</h2>
-      <button class="track" data-file="ild.mp3" type="button">
-        <span class="icon">🔥</span>
-        <span><strong>Den sidste flamme</strong><small>▶ Klik for at afspille · loop</small></span>
-      </button><h2>Kapitel 6 – Dragefestivalen</h2>
-      <button class="track" data-file="festmusik.mp3" type="button">
-        <span class="icon">🎉</span>
-        <span><strong>Dragefestival – fest</strong><small>▶ Klik for at afspille · loop</small></span>
-      </button>
-      <button class="track" data-file="dragebroel_festival.mp3" type="button">
-        <span class="icon">🐲</span>
-        <span><strong>Dragebrøl</strong><small>▶ Klik for at afspille · loop</small></span>
-      </button>
-      <button class="track" data-file="grotte_ambience.mp3" type="button">
-        <span class="icon">🎵</span>
-        <span><strong>Festivalstemning</strong><small>▶ Klik for at afspille · loop</small></span>
-      </button>
+<h2>Kapitel 1 – Havet og Mågerne</h2>
+<button class="track" data-file="hav_og_maager.mp3" type="button">
+<span class="icon">🌊</span><span><strong>Havet og Mågerne</strong><small>▶ Klik for at afspille · loop</small></span>
+</button>
+</section>
+
+<section>
+<h2>Kapitel 2 – Storm over havet</h2>
+<button class="track" data-file="storm_over_havet_af_skyer.mp3" type="button">
+<span class="icon">🌩️</span><span><strong>Storm over havet</strong><small>▶ Klik for at afspille · loop</small></span>
+</button>
+</section>
+
+<section>
+<h2>Kapitel 3 – Skyggernes labyrint</h2>
+<button class="track" data-file="skyggernes_labyrint_scene.mp3" type="button">
+<span class="icon">🌑</span><span><strong>Skyggernes labyrint</strong><small>▶ Klik for at afspille · loop</small></span>
+</button>
+</section>
+
+<section>
+<h2>Kapitel 4 – De sovende drager</h2>
+<button class="track" data-file="de_sovende_drager_scene.mp3" type="button">
+<span class="icon">🐉</span><span><strong>De sovende drager</strong><small>▶ Klik for at afspille · loop</small></span>
+</button>
+</section>
+
+<section>
+<h2>Kapitel 5 – Den sidste flamme</h2>
+<button class="track" data-file="ild.mp3" type="button">
+<span class="icon">🔥</span><span><strong>Den sidste flamme</strong><small>▶ Klik for at afspille · loop</small></span>
+</button>
+</section>
+
+<section>
+<h2>Kapitel 6 – Dragefestivalen</h2>
+<button id="dragefestival" class="track" type="button">
+<span class="icon">🎉</span><span><strong>Dragefestival</strong><small>▶ Klik for at afspille · alle lyde samtidig · loop</small></span>
+</button>
+<button id="stopFestival" class="track stop" type="button">
+<span class="icon">⏹️</span><span><strong>Stop Dragefestival</strong><small>Stopper alle festivallyde</small></span>
+</button>
 </section>
 </main>
+
 <script>
-const player=document.getElementById('player');
+const player=new Audio();
 const status=document.getElementById('status');
-const buttons=[...document.querySelectorAll('.track')];
+const buttons=[...document.querySelectorAll('.track[data-file]')];
+let festivalTracks=[];
 
 buttons.forEach(button=>{
-  button.addEventListener('click', async ()=>{
-    const file=button.dataset.file;
-    player.pause();
-    player.src=file;
-    player.loop=true;
-    buttons.forEach(b=>b.classList.remove('active'));
-    button.classList.add('active');
-    status.textContent='Indlæser: '+file;
-    try {
-      await player.play();
-      status.textContent='Afspiller: '+button.innerText.replace(/\s+/g,' ').trim()+' — loop er aktivt.';
-    } catch(e) {
-      status.textContent='Browseren kunne ikke starte lydfilen: '+file;
-      console.error(e);
-    }
-  });
+button.addEventListener('click',async()=>{
+const file=button.dataset.file;
+festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0});
+festivalTracks=[];
+buttons.forEach(b=>b.classList.remove('active'));
+button.classList.add('active');
+player.pause();
+player.currentTime=0;
+player.src=file;
+player.loop=true;
+status.textContent='Indlæser: '+file;
+try{
+await player.play();
+status.textContent='Afspiller: '+button.querySelector('strong').textContent+' – loop er aktivt.';
+}catch(error){
+status.textContent='Browseren kunne ikke starte lydfilen: '+file;
+console.error(error);
+}
 });
+});
+
+const festivalButton=document.getElementById('dragefestival');
+const stopFestivalButton=document.getElementById('stopFestival');
+
+festivalButton.addEventListener('click',async()=>{
+player.pause();
+player.currentTime=0;
+buttons.forEach(button=>button.classList.remove('active'));
+festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0});
+festivalTracks=[
+new Audio('festmusik.mp3'),
+new Audio('dragebroel_festival.mp3'),
+new Audio('grotte_ambience.mp3')
+];
+festivalTracks.forEach(audio=>{audio.loop=true;audio.volume=1});
+festivalButton.classList.add('active');
+status.textContent='Afspiller: Dragefestival – alle lyde samtidig.';
+try{
+await Promise.all(festivalTracks.map(audio=>audio.play()));
+}catch(error){
+status.textContent='Browseren kunne ikke starte Dragefestivalen.';
+console.error(error);
+}
+});
+
+stopFestivalButton.addEventListener('click',()=>{
+festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0});
+festivalTracks=[];
+festivalButton.classList.remove('active');
+status.textContent='Dragefestivalen er stoppet.';
+});
+
 player.addEventListener('error',()=>{
-  if(player.src) status.textContent='Kunne ikke indlæse lydfilen: '+player.src;
+if(player.src)status.textContent='Kunne ikke indlæse lydfilen.';
 });
 </script>
 </body>
