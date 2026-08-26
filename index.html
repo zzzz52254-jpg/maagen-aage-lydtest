@@ -55,11 +55,7 @@ h2{font-size:28px;margin:0 0 14px}
 <section>
 <h2>Kapitel 5 – Den sidste flamme</h2>
 <button class="track" data-file="ild.mp3" type="button">
-<span class="icon">🔥</span><span><strong>Den sidste flamme</strong><small>▶ Klik for at afspille · loop</small></span>
-</button>
-</section>
 
-<section>
 <h2>Kapitel 6 – Dragefestivalen</h2>
 <button id="dragefestival" class="track" type="button">
 <span class="icon">🎉</span><span><strong>Dragefestival</strong><small>▶ Klik for at afspille · alle lyde samtidig · loop</small></span>
@@ -74,7 +70,7 @@ h2{font-size:28px;margin:0 0 14px}
 const player=new Audio();
 const status=document.getElementById('status');
 const buttons=[...document.querySelectorAll('.track[data-file]')];
-let festivalTracks=[];
+let festivalTracks=[new Audio('festmusik.mp3'),new Audio('grotte_ambience.mp3')];
 
 buttons.forEach(button=>{
 button.addEventListener('click',async()=>{
@@ -103,12 +99,12 @@ const stopFestivalButton=document.getElementById('stopFestival');
 
 festivalButton.addEventListener('click',async()=>{
 player.pause();
-player.currentTime=0;
+
 buttons.forEach(button=>button.classList.remove('active'));
 festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0});
 festivalTracks=[
 new Audio('festmusik.mp3'),
-new Audio('dragebroel_festival.mp3'),
+
 new Audio('grotte_ambience.mp3')
 ];
 festivalTracks.forEach(audio=>{audio.loop=true;audio.volume=1});
