@@ -22,7 +22,7 @@ h2{font-size:18px;margin:0 0 5px;color:white;text-shadow:0 1px 3px #000}
 <main>
 <h1>Drageøens hemmelighed</h1>
 <div class="intro"></div>
-<div id="status">Klar til afspilning.</div>
+
 
 <section>
 <h2>Havet og Mågerne</h2>
@@ -64,9 +64,14 @@ h2{font-size:18px;margin:0 0 5px;color:white;text-shadow:0 1px 3px #000}
 
 <span class="letter">F</span>
 </button>
-<button id="stopFestival" class="track stop" type="button">
-<span class="icon">⏹️</span><span><strong>Stop Dragefestival</strong><small>Stopper alle festivallyde</small></span>
+<section>
+<h2>Dragefestivalen</h2>
+
+<button id="dragefestival" class="track" type="button">
+<span class="letter">F</span>
 </button>
+
+</section>
 </section>
 </main>
 
@@ -100,38 +105,39 @@ console.error(error);
 });
 
 const festivalButton=document.getElementById('dragefestival');
-const stopFestivalButton=document.getElementById('stopFestival');
 
 festivalButton.addEventListener('click',async()=>{
-player.pause();
+  if(festivalTracks.length>0){
+    festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0;});
+    festivalTracks=[];
+    festivalButton.classList.remove('active');
+    return;
+  }
 
-buttons.forEach(button=>button.classList.remove('active'));
-festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0});
-festivalTracks=[
-new Audio('festmusik.mp3'),
+  player.pause();
+  buttons.forEach(button=>button.classList.remove('active'));
 
-new Audio('grotte_ambience.mp3')
-];
-festivalTracks[0].loop=true;
-festivalTracks[0].volume=0.15;
-festivalTracks[1].loop=true;
-festivalTracks[1].volume=1;
-festivalButton.classList.add('active');
-status.textContent='Afspiller: Dragefestival – alle lyde samtidig.';
-try{
-await Promise.all(festivalTracks.map(audio=>audio.play()));
-}catch(error){
-status.textContent='Browseren kunne ikke starte Dragefestivalen.';
-console.error(error);
-}
+  festivalTracks=[
+    new Audio('festmusik.mp3'),
+    new Audio('grotte_ambience.mp3')
+  ];
+
+  festivalTracks[0].loop=true;
+  festivalTracks[0].volume=0.15;
+
+  festivalTracks[1].loop=true;
+  festivalTracks[1].volume=1;
+
+  festivalButton.classList.add('active');
+
+  try{
+    await Promise.all(festivalTracks.map(audio=>audio.play()));
+  }catch(error){
+    console.error(error);
+  }
 });
 
-stopFestivalButton.addEventListener('click',()=>{
-festivalTracks.forEach(audio=>{audio.pause();audio.currentTime=0});
-festivalTracks=[];
-festivalButton.classList.remove('active');
-status.textContent='Dragefestivalen er stoppet.';
-});
+
 
 player.addEventListener('error',()=>{
 if(player.src)status.textContent='Kunne ikke indlæse lydfilen.';
