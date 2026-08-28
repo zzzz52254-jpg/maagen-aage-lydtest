@@ -76,95 +76,197 @@ h2{font-size:18px;margin:0 0 5px;color:white;text-shadow:0 1px 3px #000}
 </main>
 
 <script>
-const player=new Audio();
-const status=document.getElementById('status');
-const buttons=[...document.querySelectorAll('.track[data-file]')];
-let festivalTracks=[];
+const player = new Audio();
+const status = document.getElementById('status');
 
-buttons.forEach(button=>{
-  button.addEventListener('click',async()=>{
-    const file=button.dataset.file;
+const buttons = [...document.querySelectorAll('.track[data-file]')];
 
-    if(button.classList.contains('active')){
+let festivalTracks = [];
+
+
+/* =========================
+   KAPITELLYDE A-E
+   ========================= */
+
+buttons.forEach(button => {
+
+  button.addEventListener('click', async () => {
+
+    const file = button.dataset.file;
+
+
+    /* Hvis samme knap trykkes igen = STOP */
+
+    if (button.classList.contains('active')) {
+
       player.pause();
-      player.currentTime=0;
+      player.currentTime = 0;
+
       button.classList.remove('active');
-      status.textContent='Afspilning stoppet.';
+
+      status.textContent = 'Afspilning stoppet.';
+
       return;
     }
 
-    festivalTracks.forEach(audio=>{
+
+    /* Stop eventuel dragefestival */
+
+    festivalTracks.forEach(audio => {
       audio.pause();
-      audio.currentTime=0;
+      audio.currentTime = 0;
     });
-    festivalTracks=[];
+
+    festivalTracks = [];
+
+
+    /* Stop alle andre kapitler */
+
     player.pause();
-    buttons.forEach(b=>b.classList.remove('active'));
+    player.currentTime = 0;
+
+    buttons.forEach(b => {
+      b.classList.remove('active');
+    });
+
+
+    /* Aktiver den valgte knap */
 
     button.classList.add('active');
 
-    player.currentTime=0;
-    player.src=file;
-    player.loop=true;
-    status.textContent='Indlæser: '+file;
 
-    try{
+    /* Indlæs lydfilen */
+
+    player.src = file;
+    player.loop = true;
+
+    status.textContent = 'Indlæser lyd...';
+
+
+    try {
+
       await player.play();
-      status.textContent='Afspiller lyd.';
-    }catch(error){
-      status.textContent='Browseren kunne ikke starte lydfilen: '+file;
+
+      status.textContent = 'Afspiller lyd.';
+
+    } catch (error) {
+
+      status.textContent =
+        'Kunne ikke starte lydfilen: ' + file;
+
       console.error(error);
+
       button.classList.remove('active');
     }
+
   });
-});
+
 });
 
-const festivalButton=document.getElementById('dragefestival');
 
-festivalButton.addEventListener('click',async()=>{
-  if(festivalTracks.length>0){
-    festivalTracks.forEach(audio=>{
+/* =========================
+   DRAGEFESTIVAL F
+   ========================= */
+
+const festivalButton =
+  document.getElementById('dragefestival');
+
+
+festivalButton.addEventListener('click', async () => {
+
+
+  /* Hvis festivalen allerede spiller = STOP */
+
+  if (festivalTracks.length > 0) {
+
+    festivalTracks.forEach(audio => {
       audio.pause();
-      audio.currentTime=0;
+      audio.currentTime = 0;
     });
-    festivalTracks=[];
+
+    festivalTracks = [];
+
     festivalButton.classList.remove('active');
-    status.textContent='Afspilning stoppet.';
+
+    status.textContent = 'Afspilning stoppet.';
+
     return;
   }
 
-  player.pause();
-  buttons.forEach(button=>button.classList.remove('active'));
 
-  festivalTracks=[
+  /* Stop eventuel kapitellyd */
+
+  player.pause();
+  player.currentTime = 0;
+
+  buttons.forEach(button => {
+    button.classList.remove('active');
+  });
+
+
+  /* Start festivalens to lydspor */
+
+  festivalTracks = [
     new Audio('festmusik.mp3'),
     new Audio('grotte_ambience.mp3')
   ];
 
-  festivalTracks[0].loop=true;
-  festivalTracks[0].volume=0.15;
 
-  festivalTracks[1].loop=true;
-  festivalTracks[1].volume=1;
+  /* Festivalmusik */
+
+  festivalTracks[0].loop = true;
+  festivalTracks[0].volume = 0.15;
+
+
+  /* Grotteambience */
+
+  festivalTracks[1].loop = true;
+  festivalTracks[1].volume = 1;
+
 
   festivalButton.classList.add('active');
 
-  try{
-    await Promise.all(festivalTracks.map(audio=>audio.play()));
-    status.textContent='Afspiller Dragefestival.';
-  }catch(error){
+  status.textContent = 'Afspiller Dragefestival.';
+
+
+  try {
+
+    await Promise.all(
+      festivalTracks.map(audio => audio.play())
+    );
+
+  } catch (error) {
+
     console.error(error);
-    festivalTracks=[];
+
+    festivalTracks.forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+
+    festivalTracks = [];
+
     festivalButton.classList.remove('active');
-    status.textContent='Browseren kunne ikke starte Dragefestivalen.';
+
+    status.textContent =
+      'Browseren kunne ikke starte Dragefestivalen.';
   }
+
 });
 
 
-player.addEventListener('error',()=>{
-if(player.src)status.textContent='Kunne ikke indlæse lydfilen.';
+/* =========================
+   FEJL PÅ LYDFILER
+   ========================= */
+
+player.addEventListener('error', () => {
+
+  if (player.src) {
+    status.textContent = 'Kunne ikke indlæse lydfilen.';
+  }
+
 });
+
 </script>
 </body>
 </html>
