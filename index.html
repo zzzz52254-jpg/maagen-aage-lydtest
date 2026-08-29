@@ -1,88 +1,282 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="da">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mågen Åge – Lyd</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drageøens hemmelighed</title>
+
 <style>
-body{margin:0;background:#f4f7fb url('maagen-aage-baggrund.png') center center/cover fixed no-repeat;color:#10243e;font-family:Arial,sans-serif}
-main{max-width:360px;margin:0 auto;padding:8px 6px}
-h1{font-size:22px;margin:0 0 3px 0;text-align:center;background:white;border-radius:6px;padding:4px 8px}.intro{font-size:12px;margin-bottom:6px;text-align:center;background:white;border-radius:6px;padding:3px 6px}
-h2{font-size:18px;margin:0 0 5px;color:white;text-shadow:0 1px 3px #000}
-h2{font-size:18px;margin:0 0 5px;color:white;text-shadow:0 1px 3px #000}
-.track{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:2px solid #aab6c7;background:#edf2f8;border-radius:50%;padding:0;margin:4px 0}
-.track:hover,.track.active{background:#dfe9f5;border-color:#5d718d}
-.letter{font-size:17px;font-weight:bold;color:#10243e}
-.track small{display:none}
-#status{background:white;border-radius:8px;padding:7px;margin:8px 0;font-size:13px}
-.stop{background:#f1dede;border-color:#b96b6b}.stop:hover{background:#ead0d0}
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #10243e url('maagen-aage-background.png') center/cover fixed no-repeat;
+  color: #10243e;
+  font-family: Arial, sans-serif;
+}
+
+main {
+  width: min(92vw, 520px);
+  margin: auto;
+  padding: 14px 0 28px;
+}
+
+h1 {
+  margin: 0 0 18px;
+  padding: 11px 14px;
+  text-align: center;
+  font-size: clamp(24px, 7vw, 34px);
+  line-height: 1.1;
+  color: #10243e;
+  background: rgba(255,255,255,.92);
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.18);
+}
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  justify-items: center;
+}
+
+.track {
+  width: 74px;
+  height: 74px;
+  padding: 0;
+  border: 3px solid #aab6c7;
+  border-radius: 50%;
+  background: rgba(255,255,255,.94);
+  color: #10243e;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 3px 9px rgba(0,0,0,.22);
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.track:hover {
+  transform: scale(1.05);
+}
+
+.track.active {
+  background: #dfefff;
+  border-color: #4f78ad;
+
+  box-shadow:
+    0 0 0 4px rgba(79,120,173,.22),
+    0 4px 12px rgba(0,0,0,.25);
+}
+
+.letter {
+  display: block;
+  color: #10243e;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 420px) {
+
+  main {
+    width: 94vw;
+    padding-top: 10px;
+  }
+
+  h1 {
+    font-size: 25px;
+    margin-bottom: 14px;
+  }
+
+  .chapter-grid {
+    gap: 12px;
+  }
+
+  .track {
+    width: 64px;
+    height: 64px;
+  }
+
+  .letter {
+    font-size: 25px;
+  }
+}
 </style>
 </head>
+
+
 <body>
+
 <main>
+
 <h1>Drageøens hemmelighed</h1>
-<div class="intro"></div>
 
+<div id="status" class="status" aria-live="polite">
+Klar til afspilning.
+</div>
 
-<section>
-<h2>Havet og Mågerne</h2>
-<button class="track" data-file="hav_og_maager.mp3" type="button">
-<span class="letter">A</span>
+<div class="chapter-grid">
+
+<button
+  class="track"
+  data-file="hav_og_maager.mp3"
+  type="button"
+  aria-label="Kapitel A">
+  <span class="letter">A</span>
 </button>
-</section>
 
-<section>
-<h2>Storm over havet</h2>
-<button class="track" data-file="storm_over_havet_af_skyer.mp3" type="button">
-<span class="letter">B</span>
+
+<button
+  class="track"
+  data-file="storm_over_havet_af_skyer.mp3"
+  type="button"
+  aria-label="Kapitel B">
+  <span class="letter">B</span>
 </button>
-</section>
 
-<section>
-<h2>Skyggernes labyrint</h2>
-<button class="track" data-file="skyggernes_labyrint_scene.mp3" type="button">
-<span class="letter">C</span>S
+
+<button
+  class="track"
+  data-file="skyggernes_labyrint_scene.mp3"
+  type="button"
+  aria-label="Kapitel C">
+  <span class="letter">C</span>
 </button>
-</section>
 
-<section>
-<h2>De sovende drager</h2>
-<button class="track" data-file="de_sovende_drager_scene.mp3" type="button">
-<span class="letter">D</span>
+
+<button
+  class="track"
+  data-file="de_sovende_drager_scene.mp3"
+  type="button"
+  aria-label="Kapitel D">
+  <span class="letter">D</span>
 </button>
-</section>
 
-<section>
-<h2>Den sidste flamme</h2>
-<button class="track" data-file="ild.mp3" type="button">
-<span class="letter">E</span>
+
+<button
+  class="track"
+  data-file="ild.mp3"
+  type="button"
+  aria-label="Kapitel E">
+  <span class="letter">E</span>
 </button>
-</section>
 
-<section>
-<h2>Dragefestivalen</h2>
-<button id="dragefestival" class="track" type="button">
-<span class="letter">F</span>
+
+<button
+  id="dragefestival"
+  class="track"
+  type="button"
+  aria-label="Dragefestivalen">
+  <span class="letter">F</span>
 </button>
-</section>
-   
 
-</section>
-</section>
+</div>
+
 </main>
 
+
 <script>
+
 const player = new Audio();
+
+player.preload = 'auto';
+
 const status = document.getElementById('status');
 
-const buttons = [...document.querySelectorAll('.track[data-file]')];
+const buttons = [
+  ...document.querySelectorAll('.track[data-file]')
+];
+
+const festivalButton =
+  document.getElementById('dragefestival');
 
 let festivalTracks = [];
 
 
-/* =========================
-   KAPITELLYDE A-E
-   ========================= */
+/* Stop almindelig kapitellyd */
+
+function stopChapter() {
+
+  player.pause();
+
+  player.currentTime = 0;
+
+  player.removeAttribute('src');
+
+  player.load();
+}
+
+
+/* Stop Dragefestival */
+
+function stopFestival() {
+
+  festivalTracks.forEach(audio => {
+
+    audio.pause();
+
+    audio.currentTime = 0;
+
+  });
+
+  festivalTracks = [];
+
+  festivalButton.classList.remove('active');
+}
+
+
+/* Fjern aktiv markering fra alle knapper */
+
+function clearActive() {
+
+  buttons.forEach(button => {
+
+    button.classList.remove('active');
+
+  });
+
+  festivalButton.classList.remove('active');
+}
+
+
+/*
+   Kapitel A-E
+
+   Første tryk:
+   Start lyd.
+
+   Andet tryk på samme knap:
+   Stop lyd.
+
+   Tryk på en anden knap:
+   Stop den gamle lyd
+   og start den nye.
+*/
 
 buttons.forEach(button => {
 
@@ -91,68 +285,62 @@ buttons.forEach(button => {
     const file = button.dataset.file;
 
 
-    /* Hvis samme knap trykkes igen = STOP */
+    /* Samme knap trykkes igen = STOP */
 
     if (button.classList.contains('active')) {
 
-      player.pause();
-      player.currentTime = 0;
+      stopChapter();
 
       button.classList.remove('active');
 
-      status.textContent = 'Afspilning stoppet.';
+      status.textContent =
+        'Afspilning stoppet.';
 
       return;
     }
 
 
-    /* Stop eventuel dragefestival */
+    /* Stop alt andet */
 
-    festivalTracks.forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
+    stopFestival();
 
-    festivalTracks = [];
+    stopChapter();
 
-
-    /* Stop alle andre kapitler */
-
-    player.pause();
-    player.currentTime = 0;
-
-    buttons.forEach(b => {
-      b.classList.remove('active');
-    });
+    clearActive();
 
 
-    /* Aktiver den valgte knap */
+    /* Marker denne knap som aktiv */
 
     button.classList.add('active');
 
 
-    /* Indlæs lydfilen */
+    /* Indlæs lydfil */
 
     player.src = file;
+
     player.loop = true;
 
-    status.textContent = 'Indlæser lyd...';
+    player.load();
 
 
     try {
 
       await player.play();
 
-      status.textContent = 'Afspiller lyd.';
-
-    } catch (error) {
-
       status.textContent =
-        'Kunne ikke starte lydfilen: ' + file;
+        'Afspiller lyd.';
+
+    }
+
+    catch (error) {
 
       console.error(error);
 
       button.classList.remove('active');
+
+      status.textContent =
+        'Kunne ikke starte lydfilen: ' + file;
+
     }
 
   });
@@ -160,13 +348,15 @@ buttons.forEach(button => {
 });
 
 
-/* =========================
-   DRAGEFESTIVAL F
-   ========================= */
+/*
+   DRAGEFESTIVAL
 
-const festivalButton =
-  document.getElementById('dragefestival');
+   Første tryk:
+   Start begge festival-lyde.
 
+   Andet tryk:
+   Stop begge festival-lyde.
+*/
 
 festivalButton.addEventListener('click', async () => {
 
@@ -175,94 +365,100 @@ festivalButton.addEventListener('click', async () => {
 
   if (festivalTracks.length > 0) {
 
-    festivalTracks.forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
+    stopFestival();
 
-    festivalTracks = [];
-
-    festivalButton.classList.remove('active');
-
-    status.textContent = 'Afspilning stoppet.';
+    status.textContent =
+      'Afspilning stoppet.';
 
     return;
   }
 
 
-  /* Stop eventuel kapitellyd */
+  /* Stop eventuelt kapitel */
 
-  player.pause();
-  player.currentTime = 0;
+  stopChapter();
 
-  buttons.forEach(button => {
-    button.classList.remove('active');
-  });
+  clearActive();
 
 
-  /* Start festivalens to lydspor */
+  /* Festivalens to lydspor */
 
   festivalTracks = [
+
     new Audio('festmusik.mp3'),
+
     new Audio('grotte_ambience.mp3')
+
   ];
 
 
-  /* Festivalmusik */
+  /* Musik */
 
   festivalTracks[0].loop = true;
+
   festivalTracks[0].volume = 0.15;
 
 
-  /* Grotteambience */
+  /* Grotte */
 
   festivalTracks[1].loop = true;
+
   festivalTracks[1].volume = 1;
 
 
-  festivalButton.classList.add('active');
+  /* Marker F som aktiv */
 
-  status.textContent = 'Afspiller Dragefestival.';
+  festivalButton.classList.add('active');
 
 
   try {
 
     await Promise.all(
-      festivalTracks.map(audio => audio.play())
+
+      festivalTracks.map(audio => {
+
+        audio.load();
+
+        return audio.play();
+
+      })
+
     );
 
-  } catch (error) {
+    status.textContent =
+      'Afspiller Dragefestival.';
+
+  }
+
+  catch (error) {
 
     console.error(error);
 
-    festivalTracks.forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
-
-    festivalTracks = [];
-
-    festivalButton.classList.remove('active');
+    stopFestival();
 
     status.textContent =
-      'Browseren kunne ikke starte Dragefestivalen.';
+      'Kunne ikke starte Dragefestivalen.';
+
   }
 
 });
 
 
-/* =========================
-   FEJL PÅ LYDFILER
-   ========================= */
+/* Fejl ved lydfil */
 
 player.addEventListener('error', () => {
 
   if (player.src) {
-    status.textContent = 'Kunne ikke indlæse lydfilen.';
+
+    status.textContent =
+      'Kunne ikke indlæse lydfilen.';
+
   }
 
 });
 
 </script>
+
 </body>
 </html>
+
