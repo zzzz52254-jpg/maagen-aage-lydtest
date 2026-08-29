@@ -145,13 +145,17 @@ h1 {
         font-size: 24px;
         border-radius: 12px;
     }
-    .chapter-grid {
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        grid-template-columns: 58px;
-        gap: 10px;
-    }
+  .chapter-grid {
+    position: fixed;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: grid;
+    grid-template-columns: 58px;
+    grid-auto-rows: 58px;
+    gap: 10px;
+    z-index: 20;
+}
     .track {
         width: 58px;
         height: 58px;
