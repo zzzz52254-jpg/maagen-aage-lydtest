@@ -581,7 +581,63 @@ festivalButton.addEventListener("click", async () => {
 });
 
 
+/* G - Mågen Åge-sangen */
+maagenSongButton.addEventListener("click", async () => {
 
+    /* Hvis G allerede spiller: STOP */
+    if (maagenSongButton.classList.contains("active")) {
+
+        stopChapter();
+
+        maagenSongButton.classList.remove("active");
+
+        status.textContent = "Afspilning stoppet.";
+
+        return;
+    }
+
+    /* Stop anden lyd */
+    stopFestival();
+
+    stopChapter();
+
+    clearActive();
+
+    /* Start Mågen Åge-sangen */
+    maagenSongButton.classList.add("active");
+
+    player.src = "mågen Åge.mp3";
+
+    player.loop = false;
+
+    player.load();
+
+    try {
+
+        await player.play();
+
+        status.textContent = "Mågen Åge-sangen spiller.";
+
+    } catch (error) {
+
+        console.error(error);
+
+        maagenSongButton.classList.remove("active");
+
+        status.textContent = "Kunne ikke starte Mågen Åge-sangen.";
+
+    }
+});
+
+
+/* Når sangen er færdig */
+player.addEventListener("ended", () => {
+
+    maagenSongButton.classList.remove("active");
+
+    status.textContent = "Mågen Åge-sangen er slut.";
+
+});
 </script>
 
 </body>
