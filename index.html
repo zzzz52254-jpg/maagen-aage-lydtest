@@ -140,17 +140,33 @@ h1 {
     grid-column: auto;
 }
 
-/* Mågen Åge-sangen */
-.maagen-song {
-    display: flex;
+  flex-direction: row;
     align-items: center;
+    justify-self: end;
     gap: 8px;
+    width: max-content;
 }
 
-.song-label {
+.maagen-song .track {
+    order: 2;
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    max-width: 58px;
+    min-height: 58px;
+    max-height: 58px;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.maagen-song .song-label {
+    order: 1;
     color: white;
     font-size: 15px;
     font-weight: bold;
+    white-space: nowrap;
+    text-shadow: 1px 1px 3px black;
     white-space: nowrap;
     text-shadow: 1px 1px 3px black;
 }
@@ -196,12 +212,17 @@ h1 {
         z-index: 20;
     }
 
-    .track {
-        width: 58px;
-        height: 58px;
-        font-size: 23px;
-        border-width: 2px;
-    }
+.track {
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    min-height: 58px;
+    max-width: 58px;
+    max-height: 58px;
+    flex: 0 0 58px;
+    font-size: 23px;
+    border-width: 2px;
+}
 
     .letter {
         font-size: 23px;
